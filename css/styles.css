@@ -1,0 +1,101 @@
+body {
+    color: #FEFEFE;
+    background-color: #262626;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+br {
+    line-height: 30px;
+}
+
+#main {
+    display: inline-flex;
+}
+
+#adventure-cover {
+    margin-right: 12px;
+    margin-top: 12px;
+}
+
+#location-text {
+    color: #000;
+    background: url(../img/background.jpg) repeat-x scroll 0 0 #AE9873;
+    border: 1px solid #101010;
+    border-radius: 10px;
+    margin: 12px;
+    padding: 6px;
+}
+
+#location-text img {
+    border: 1px solid #5C5C5C;
+}
+
+#actions {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+.action {
+    background-color: 161617;
+    border: 1px solid #3A3A3A;
+    border-radius: 4px;
+    margin-right: 12px;
+    margin-bottom: 6px;
+    padding: 6px;
+}
+
+.action .button {
+    background-color: #2A2A2A;
+    border: 1px solid #5C5C5C;
+    border-radius: 4px;
+    padding: 6px;
+    color: #F7B04D;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.action .button-incomplete {
+    background-color: #2A2A2A;
+    border: 1px solid #3A3A3A;
+    border-radius: 4px;
+    padding: 6px;
+    color: red;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#info-panel {
+    background-color: #1A1A1A;
+    border: 1px solid #3A3A3A;
+    border-radius: 4px;
+    color: #EBE29E;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 12px;
+}
+
+table {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+table tr td {
+    padding: 6px;
+}
+
+@media only screen and (max-width: 1024px) {
+    #adventure-cover {
+        visibility: collapse;
+        width: 0%;
+    }
+
+    #location-text {
+        width: 100%;
+    }
+}

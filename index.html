@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Choose Your Own Adventure</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+<body>
+    <h1 id="title">Choose Your Own Adventure</h1>
+
+<div id="main">
+    <div id="location-text">
+    </div>
+    <div id="adventure-cover">
+    </div>
+</div>
+
+<br style="clear:both" />
+
+<div id="info-panel">
+    Could not load adventure data
+</div>
+
+<br style="clear:both" />
+
+<div id="actions">
+</div>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/choose-your-adventure.js"></script>
+<script type="text/javascript">
+    var chooseYourAdventure = new ChooseYourAdventure();
+    (function () {
+        var index,
+            length,
+            param,
+            adventureDataScript,
+            el = document.createElement('script'),
+            queryStringParams = chooseYourAdventure.GetQueryStringParams();
+
+        el.async = false;
+        el.type = 'text/javascript';
+
+        if ("adventure-file" in queryStringParams) {
+            adventureDataScript = "data/" + queryStringParams["adventure-file"] + ".js";
+                el.src = adventureDataScript;
+                (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el);
+        }
+    })();
+</script>
+</body>
+</html>
