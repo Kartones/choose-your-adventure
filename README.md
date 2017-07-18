@@ -6,11 +6,12 @@ This is a basic Javascript example of a [choose your own adventure](https://en.w
 
 ![Screenshot](doc/main-screenshot.png)
 
-It is data-driven so very easy to create any new adventure. I built it to "digitalize" a game book I was reading/playing, but as it has copyright I keep for myself the data file, and instead provide [a sample adventure](http://kartones.net/demos/021/index.html?adventure-file=demo) with all available features.
+It is data-driven so very easy to create any new adventure. I built it to "digitalize" a game book I was reading/playing, but as it has copyright I keep for myself the data file, and instead provide [a sample adventure](data/demo.js) with all available features (to run it, specify `?adventure-file=demo` at the querystring).
+**NOTE: Update with kartones.net demo link when uploaded.**
 
 ## Features
 
-The engine will load a javascript file with the name specified at the querystring parameter `adventure-file` (e.g. `demo`). I won't dig into details of the file format as it is quite easy to read and understand so go and check the sample adventure file at [http://kartones.net/demos/021/data/demo.js](http://kartones.net/demos/021/data/demo.js).
+The engine will load a javascript file with the name specified at the querystring parameter `adventure-file` (e.g. `demo`). I won't dig into details of the file format as it is quite easy to read and understand so go and check the sample adventure file at [data/demo.js](data/demo.js).
 
 What I will detail are the choices of "pages" or locations, and the actions with which you can build the adventures.
 
