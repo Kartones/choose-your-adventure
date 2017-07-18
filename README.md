@@ -33,8 +33,10 @@ Each action must define a `type`, an `argument` (or `null` for those where is no
 
 Types:
 - `goto`: The most common action, specifies a location identifier to go to if the user chooses it. If no `text` is specified it will place a default one (`Continue`).
+
 ![Goto sample](doc/goto-screenshot.png)
 - `location-input`: This action displays a text input and a button. The user can input anything on it, but only the specified location identifier is correct and will trigger an action (going to that location). It is useful for riddles, secret paths or non-linear paths.
+
 ![Location input sample](doc/location-input-screenshot.png)
 - `goback`: This action will always send back the user to the previous location it came from if chosen. It is useful to create a destination location where multiple locations point to, without the need otherwise of creating a single "go back to XXX" action per source location.
 
