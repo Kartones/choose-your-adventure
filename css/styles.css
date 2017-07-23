@@ -81,12 +81,12 @@ br {
 }
 
 table {
-    margin-top: 6px;
     margin-bottom: 6px;
+    border: 1px solid black;
 }
 
 table tr td {
-    padding: 6px;
+    padding: 4px;
 }
 
 @media only screen and (max-width: 1024px) {
