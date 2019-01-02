@@ -26,6 +26,8 @@ br {
     border-radius: 10px;
     margin: 12px;
     padding: 6px;
+    min-width: 400px;
+    min-height: 300px;
 }
 
 #location-text img {
@@ -44,7 +46,7 @@ br {
     border-radius: 4px;
     margin-right: 12px;
     margin-bottom: 6px;
-    padding: 6px;
+    padding: 6px 6px 12px 6px;
 }
 
 .action .button {

@@ -7,7 +7,7 @@ This is a basic Javascript example of a [choose your own adventure](https://en.w
 ![Screenshot](doc/main-screenshot.png)
 
 It is data-driven so very easy to create any new adventure. I built it to "digitalize" a game book I was reading/playing, but as it has copyright I keep for myself the data file, and instead provide [a sample adventure](data/demo.js) with all available features (to run it, specify `?adventure-file=demo` at the querystring).
-You can see an online working demo at [http://kartones.net/demos/021/?adventure-file=demo](http://kartones.net/demos/021/?adventure-file=demo).
+You can see an online working demo at [https://kartones.net/demos/021/?adventure-file=demo](https://kartones.net/demos/021/?adventure-file=demo).
 
 ## Features
 
@@ -26,6 +26,7 @@ The `text` field allows any kind of HTML (no cleaning is done, so careful what y
 Types:
 - `normal`: A normal location/page/scenario. Should contain 1 or more actions, but currently there are no checks nor limits on their amount.
 - `gameover`: "Death" path. This ends the current game (except if you cheat), and doesn't allows definition of actions as it will provide just one to start a new adventure.
+- 'ending': "Success" path. This ends the current game, and doesn't allows definition of actions as it will provide just one to start a new adventure.
 
 ### Actions
 
