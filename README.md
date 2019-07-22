@@ -41,7 +41,7 @@ Types:
 ![Location input sample](doc/location-input-screenshot.png)
 - `goback`: This action will always send back the user to the previous location it came from if chosen. It is useful to create a destination location where multiple locations point to, without the need otherwise of creating a single "go back to XXX" action per source location.
 
-Any other type of action will default to a "missing link" one, displaying the specified text but with a red message saying that there is no link. This is both to avoid errors and when playtesting paths to quicly see which ones are not yet build/written.
+Any other type of action will default to a "missing link" one, displaying the specified text but with a red message saying that there is no link. This is both to avoid errors and when playtesting paths to quickly see which ones are not yet build/written.
 
 ## Roadmap
 

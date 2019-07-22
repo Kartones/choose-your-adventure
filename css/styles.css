@@ -2,8 +2,8 @@ body {
     color: #FEFEFE;
     background-color: #262626;
     font-family: 'Open Sans','Helvetica Neue',Helvetica,sans-serif;
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 19px;
+    font-weight: 400;
 }
 
 br {
@@ -21,7 +21,8 @@ br {
 
 #location-text {
     color: #000;
-    background: url(../img/background.jpg) repeat-x scroll 0 0 #AE9873;
+    font-family: serif;
+    background: url(../img/background.jpg) repeat-x scroll 0 0 #E0E0E0;
     border: 1px solid #101010;
     border-radius: 10px;
     margin: 12px;
@@ -89,6 +90,7 @@ table {
 
 table tr td {
     padding: 4px;
+    text-align: center;
 }
 
 @media only screen and (max-width: 1024px) {
