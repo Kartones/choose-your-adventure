@@ -50,9 +50,7 @@ It is still a work in progress, as I haven't even finished converting a full boo
 The initial plan is:
 
 1. Fully convert a "Warhammer 40,000 gamebook" (I'm using "Hive of the Dead") and implement its rules. I won't publish the "book data", just build the engine.
-2. Check another "Warhammer 40,000 gamebook" that I have to be sure rules are compatible and generic enough. Optionally convert it (depending on my available time to transcript ~200 pages).
+2. Rewrite the engine/Javascript code. It is pretty outdated, grabbed from a personal project from around 2012.
 3. Check other classic Choose your own adventure books and implement their rules
 4. Fully convert one classic adventure book
 5. Check other similar systems and extend the engine?
-
-Also, the Javascript is pretty outdated, grabbed from a personal project from around 2012. I'd like to improve it but it is not the main goal of the project.

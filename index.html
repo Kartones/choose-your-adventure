@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/choose-your-adventure.js"></script>
+    <script type="text/javascript" src="js/text-to-speech.js"></script>
+
     <h1 id="title">Choose Your Own Adventure</h1>
 
 <div id="main">
@@ -26,8 +30,10 @@
 <div id="actions">
 </div>
 
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/choose-your-adventure.js"></script>
+<div id="speech" class="action">
+    <button class="button" id="playPause" onclick="speak(document.getElementById('location-text').innerHTML)">Read Text</button>
+</div>
+
 <script type="text/javascript">
     var chooseYourAdventure = new ChooseYourAdventure();
     (function () {
