@@ -15,6 +15,14 @@ The engine will load a javascript file with the name specified at the querystrin
 
 What I will detail are the choices of "pages" or locations, and the actions with which you can build the adventures.
 
+### Text Reading
+
+By using the `speechSynthesis` web API, under Chrome you can get the current page read to you. It is for now an experiment, so full of holes:
+
+- No Firefox support, because at least under Linux the speech sounded horrible. Untested in other browsers.
+- No cleaning of content yet before sending it to the API, so avoid reading pages with tables and such.
+- No reading of `<img>`'s `alt` content.
+
 ### Locations
 
 Each location has a numeric key identifier, and contains a `text`, a `type` and zero or more `actions`.
@@ -26,7 +34,7 @@ The `text` field allows any kind of HTML (no cleaning is done, so careful what y
 Types:
 - `normal`: A normal location/page/scenario. Should contain 1 or more actions, but currently there are no checks nor limits on their amount.
 - `gameover`: "Death" path. This ends the current game (except if you cheat), and doesn't allows definition of actions as it will provide just one to start a new adventure.
-- 'ending': "Success" path. This ends the current game, and doesn't allows definition of actions as it will provide just one to start a new adventure.
+- `ending`: "Success" path. This ends the current game, and doesn't allows definition of actions as it will provide just one to start a new adventure.
 
 ### Actions
 

@@ -48,6 +48,7 @@ br {
     margin-right: 12px;
     margin-bottom: 6px;
     padding: 6px 6px 12px 6px;
+    display: grid;
 }
 
 .action .button {
@@ -59,6 +60,7 @@ br {
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 6px;
 }
 
 .action .button-incomplete {
@@ -69,6 +71,7 @@ br {
     color: red;
     text-decoration: none;
     font-weight: 700;
+    margin-top: 6px;
 }
 
 #info-panel {
