@@ -6,6 +6,13 @@ const pitchValue = 0.7;
 const rateValue = 1;
 let desiredVoice = null;
 
+function canSpeak() {
+  if (!synth || !desiredVoice) {
+    return false;
+  }
+  return true;
+}
+
 function getVoices() {
   desiredVoice = synth
     .getVoices()
@@ -57,3 +64,12 @@ getVoices();
 if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = getVoices;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!canSpeak()) {
+    const speechDiv = document.getElementById("speech");
+    if (speechDiv) {
+      speechDiv.style.display = "none";
+    }
+  }
+});

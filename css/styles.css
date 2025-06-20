@@ -11,29 +11,38 @@ br {
 }
 
 #main {
-    display: inline-flex;
+    display: grid;
+    grid-template-areas:
+        "image image cover"
+        "text text cover";
+    grid-template-columns: 1fr 1fr auto;
+    grid-gap: 12px;
+    align-items: start;
 }
 
-#adventure-cover {
-    margin-right: 12px;
-    margin-top: 12px;
-    cursor: pointer; /* Shows that the element is clickable */
-}
-
-#adventure-cover.hidden {
-    display: none;
+#location-image {
+    grid-area: image;
 }
 
 #location-text {
+    grid-area: text;
     color: #000;
     font-family: serif;
     background: url(../img/background.jpg) repeat-x scroll 0 0 #E0E0E0;
     border: 1px solid #101010;
     border-radius: 10px;
-    margin: 12px;
     padding: 6px;
     min-width: 400px;
     min-height: 300px;
+}
+
+#adventure-cover {
+    grid-area: cover;
+    cursor: pointer;
+}
+
+#adventure-cover.hidden {
+    display: none;
 }
 
 #location-text img {
