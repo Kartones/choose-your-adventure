@@ -17,6 +17,11 @@ br {
 #adventure-cover {
     margin-right: 12px;
     margin-top: 12px;
+    cursor: pointer; /* Shows that the element is clickable */
+}
+
+#adventure-cover.hidden {
+    display: none;
 }
 
 #location-text {

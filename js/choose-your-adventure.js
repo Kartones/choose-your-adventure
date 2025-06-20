@@ -1,4 +1,3 @@
-
 var ChooseYourAdventure = function() {
     /* Placeholder to allow setting up defaults, initial values, etc. via the parameter (ommited here) */
 };
@@ -23,6 +22,11 @@ ChooseYourAdventure.prototype = {
         $("#title").empty().append(data["name"]);
 
         $("#adventure-cover").empty().append("<img src=\"" + this.base_url + data["cover"] + "\"/>");
+        
+        // Add click handler for the adventure cover to hide/show when clicked
+        $("#adventure-cover").on("click", function() {
+            $(this).toggleClass("hidden");
+        });
 
         $("#actions").on("click", "a.js-gotoaction", function(event) {
             var element = $(this);
