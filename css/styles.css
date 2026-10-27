@@ -2,12 +2,12 @@ body {
     color: #FEFEFE;
     background-color: #262626;
     font-family: 'Open Sans','Helvetica Neue',Helvetica,sans-serif;
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 400;
 }
 
 br {
-    line-height: 42px;
+    line-height: 48px;
 }
 
 #main {
@@ -52,7 +52,7 @@ br {
 #actions {
     display: inline-block;
     margin-top: 12px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .action {
@@ -94,7 +94,7 @@ br {
     border-radius: 4px;
     color: #EBE29E;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 6px;
     margin-bottom: 6px;
     padding: 12px;
@@ -115,7 +115,7 @@ table tr td {
 }
 
 #speech button {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 @media only screen and (max-width: 1024px) {

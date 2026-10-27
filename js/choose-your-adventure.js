@@ -1,4 +1,4 @@
-var ChooseYourAdventure = function () {
+const ChooseYourAdventure = function () {
   /* Placeholder to allow setting up defaults, initial values, etc. via the parameter (ommited here) */
 };
 
@@ -8,7 +8,7 @@ ChooseYourAdventure.prototype = {
   DEBUG: true,
 
   Init: function (data) {
-    var self = this;
+    const self = this;
     this.data = data;
 
     this.base_url = "data/" + data["filename"] + "/";
@@ -22,51 +22,62 @@ ChooseYourAdventure.prototype = {
     }
 
     document.title = data["name"];
-    $("#title").empty().append(data["name"]);
+    this.SetHtml(document.getElementById("title"), data["name"]);
 
-    $("#adventure-cover")
-      .empty()
-      .append('<img src="' + this.base_url + data["cover"] + '"/>');
+    const cover = document.getElementById("adventure-cover");
+    this.SetHtml(
+      cover,
+      '<img src="' + this.base_url + data["cover"] + '"/>'
+    );
 
     // Add click handler for the adventure cover to hide/show when clicked
-    $("#adventure-cover").on("click", function () {
-      $(this).toggleClass("hidden");
+    cover.addEventListener("click", function () {
+      cover.classList.toggle("hidden");
     });
 
-    $("#actions").on("click", "a.js-gotoaction", function (event) {
-      var element = $(this);
-      self.ProcessAction(
-        element.attr("data-actiontype"),
-        element.attr("data-actionargument"),
-        event
-      );
-    });
-    $("#actions").on("click", "a.js-inputaction", function (event) {
-      var element = $(this);
-      // Current platform limitation: can only have a single location input action per page/location
-      self.ProcessAction(
-        element.attr("data-actiontype"),
-        element.attr("data-actionargument"),
-        $("#action-input")
-      );
-    });
+    document
+      .getElementById("actions")
+      .addEventListener("click", function (event) {
+        const gotoLink = event.target.closest("a.js-gotoaction");
+        if (gotoLink) {
+          self.ProcessAction(
+            gotoLink.getAttribute("data-actiontype"),
+            gotoLink.getAttribute("data-actionargument"),
+            event
+          );
+          return;
+        }
+
+        const inputLink = event.target.closest("a.js-inputaction");
+        if (inputLink) {
+          // Current platform limitation: can only have a single location input action per page/location
+          self.ProcessAction(
+            inputLink.getAttribute("data-actiontype"),
+            inputLink.getAttribute("data-actionargument"),
+            document.getElementById("action-input")
+          );
+        }
+      });
 
     this.GoToLocation(this.GetCurrentOrDefaultLocation());
   },
 
-  GetQueryStringParams: function () {
-    var queryStringParams = window.location.search.substr(1).split("&"),
-      params = {},
-      index,
-      length,
-      param;
+  SetHtml: function (element, html) {
+    element.innerHTML = html;
+  },
 
-    for (
-      index = 0, length = queryStringParams.length;
-      index < length;
-      index++
-    ) {
-      param = queryStringParams[index].split("=", 2);
+  AppendActionHtml: function (html) {
+    document
+      .getElementById("actions")
+      .insertAdjacentHTML("beforeend", html);
+  },
+
+  GetQueryStringParams: function () {
+    const queryStringParams = window.location.search.substr(1).split("&"),
+      params = {};
+
+    for (const queryStringParam of queryStringParams) {
+      const param = queryStringParam.split("=", 2);
       if (param.length !== 2) {
         continue;
       }
@@ -77,11 +88,10 @@ ChooseYourAdventure.prototype = {
   },
 
   GetCurrentOrDefaultLocation: function () {
-    var hash,
-      location = this.data["startLocation"];
+    let location = this.data["startLocation"];
 
     if (window.location.hash) {
-      hash = window.location.hash.substring(1);
+      const hash = window.location.hash.substring(1);
       if (!isNaN(parseFloat(hash)) && isFinite(hash)) {
         location = hash;
       }
@@ -90,29 +100,25 @@ ChooseYourAdventure.prototype = {
   },
 
   GoToLocation: function (index) {
-    var actionIndex, text, image;
-
     if (typeof this.data["locations"][index] === "undefined") {
       throw "Location not found: " + index;
     }
 
-    image = this.data["locations"][index]["image"]
+    const image = this.data["locations"][index]["image"]
       ? this.base_url + this.data["locations"][index]["image"]
       : "";
 
-    $("#location-image").empty();
-    if (image.length > 0) {
-      $("#location-image").append(
-        '<img src="' + image + '" alt="Location Image" />'
-      );
-    }
+    this.SetHtml(
+      document.getElementById("location-image"),
+      image.length > 0 ? '<img src="' + image + '" alt="Location Image" />' : ""
+    );
 
-    text = this.data["locations"][index]["text"]
+    const text = this.data["locations"][index]["text"]
       .replace(/\[\[/gi, '<br/><img src="' + this.base_url)
       .replace(/\]\]/gi, '" />');
-    $("#location-text").empty().append(text);
+    this.SetHtml(document.getElementById("location-text"), text);
 
-    $("#actions").empty();
+    this.SetHtml(document.getElementById("actions"), "");
 
     switch (this.data["locations"][index]["type"]) {
       case "gameover":
@@ -125,7 +131,7 @@ ChooseYourAdventure.prototype = {
         break;
       default:
         this.ClearInfo();
-        for (actionIndex in this.data["locations"][index]["actions"]) {
+        for (const actionIndex in this.data["locations"][index]["actions"]) {
           this.RenderAction(
             this.data["locations"][index]["actions"][actionIndex]
           );
@@ -151,7 +157,7 @@ ChooseYourAdventure.prototype = {
   },
 
   RenderIncompleteAction(actionData) {
-    $("#actions").append(
+    this.AppendActionHtml(
       '<div class="action">' +
         actionData["text"] +
         '</br><span class="button-incomplete">Missing Link</span></div>'
@@ -159,7 +165,7 @@ ChooseYourAdventure.prototype = {
   },
 
   RenderGoBackAction(actionData) {
-    var actionText =
+    const actionText =
         actionData["text"].length > 0 ? actionData["text"] : "Continue",
       href =
         "?adventure-file=" +
@@ -169,7 +175,7 @@ ChooseYourAdventure.prototype = {
         "#" +
         this.GetQueryStringParams()["previous"];
 
-    $("#actions").append(
+    this.AppendActionHtml(
       '<div class="action">' +
         actionText +
         '</br><a class="button js-gotoaction" href="' +
@@ -183,7 +189,7 @@ ChooseYourAdventure.prototype = {
   },
 
   RenderGoToLocationAction(actionData) {
-    var actionText =
+    const actionText =
         actionData["text"].length > 0 ? actionData["text"] : "Continue",
       href =
         "?adventure-file=" +
@@ -193,7 +199,7 @@ ChooseYourAdventure.prototype = {
         "#" +
         actionData["argument"];
 
-    $("#actions").append(
+    this.AppendActionHtml(
       '<div class="action">' +
         actionText +
         '</br><a class="button js-gotoaction" href="' +
@@ -207,7 +213,7 @@ ChooseYourAdventure.prototype = {
   },
 
   RenderLocationInputAction(actionData) {
-    $("#actions").append(
+    this.AppendActionHtml(
       '<div class="action">' +
         actionData["text"] +
         '</br><input type="text" size="5" id="action-input" name="action-input\'" class="button"' +
@@ -227,7 +233,7 @@ ChooseYourAdventure.prototype = {
         this.GoToLocation(actionArgument);
         break;
       case "location-input":
-        if (actionArgument === event.val()) {
+        if (actionArgument === event.value) {
           this.UpdateBrowserHistory(actionArgument);
           this.GoToLocation(actionArgument);
         }
@@ -236,18 +242,23 @@ ChooseYourAdventure.prototype = {
   },
 
   NotifyGameOver: function () {
-    $("#info-panel").empty().append("Your adventure is at an end.").show();
+    this.ShowInfo("Your adventure is at an end.");
   },
 
   NotifyYouFinished: function () {
-    $("#info-panel")
-      .empty()
-      .append("Congratulations. Your adventure is at an end.")
-      .show();
+    this.ShowInfo("Congratulations. Your adventure is at an end.");
+  },
+
+  ShowInfo: function (message) {
+    const infoPanel = document.getElementById("info-panel");
+    infoPanel.textContent = message;
+    infoPanel.style.display = "";
   },
 
   ClearInfo: function () {
-    $("#info-panel").empty().hide();
+    const infoPanel = document.getElementById("info-panel");
+    infoPanel.textContent = "";
+    infoPanel.style.display = "none";
   },
 
   GameOverActionData: function () {
@@ -259,7 +270,7 @@ ChooseYourAdventure.prototype = {
   },
 
   UpdateBrowserHistory: function (actionArgument) {
-    var href =
+    const href =
       "?adventure-file=" +
       this.GetQueryStringParams()["adventure-file"] +
       "&previous=" +

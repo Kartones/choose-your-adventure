@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/choose-your-adventure.js"></script>
     <script type="text/javascript" src="js/text-to-speech.js"></script>
 
@@ -37,20 +36,16 @@
 </div>
 
 <script type="text/javascript">
-    var chooseYourAdventure = new ChooseYourAdventure();
+    const chooseYourAdventure = new ChooseYourAdventure();
     (function () {
-        var index,
-            length,
-            param,
-            adventureDataScript,
-            el = document.createElement('script'),
+        const el = document.createElement('script'),
             queryStringParams = chooseYourAdventure.GetQueryStringParams();
 
         el.async = false;
         el.type = 'text/javascript';
 
         if ("adventure-file" in queryStringParams) {
-            adventureDataScript = "data/" + queryStringParams["adventure-file"] + ".js";
+            const adventureDataScript = "data/" + queryStringParams["adventure-file"] + ".js";
                 el.src = adventureDataScript;
                 (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el);
         }
